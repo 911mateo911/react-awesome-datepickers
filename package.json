@@ -1,0 +1,58 @@
+{
+  "name": "react-awesome-datepickers",
+  "version": "1.0.4",
+  "description": "awesome datepickers for react apps",
+  "scripts": {
+    "build": "rm -rf ./dist && node bundle-builder.js && npm version patch",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
+  },
+  "main": "dist/react-awesome-datepickers.cjs.js",
+  "module": "dist/react-awesome-datepickers.esm.js",
+  "types": "dist/dts/index.d.ts",
+  "keywords": [
+    "react",
+    "datepickers",
+    "date",
+    "picker"
+  ],
+  "repository": {
+    "url": "https://github.com/911mateo911/react-datepickers"
+  },
+  "files": [
+    "/dist"
+  ],
+  "author": "911mateo911",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.16.0",
+    "@babel/preset-env": "^7.16.4",
+    "@babel/preset-react": "^7.16.0",
+    "@babel/preset-typescript": "^7.16.0",
+    "@rollup/plugin-babel": "^5.3.0",
+    "@rollup/plugin-commonjs": "^21.0.1",
+    "@rollup/plugin-node-resolve": "^13.0.6",
+    "@rollup/plugin-url": "^6.1.0",
+    "@storybook/addon-actions": "^6.4.1",
+    "@storybook/addon-essentials": "^6.4.1",
+    "@storybook/addon-links": "^6.4.1",
+    "@storybook/react": "^6.4.1",
+    "@svgr/rollup": "^6.0.0",
+    "@types/node": "^16.11.11",
+    "@types/react": "^17.0.37",
+    "@types/react-dom": "^17.0.11",
+    "babel-loader": "^8.2.3",
+    "babel-plugin-inline-react-svg": "^2.0.1",
+    "postcss": "^8.4.4",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "rollup": "^2.60.2",
+    "rollup-plugin-postcss": "^4.0.2",
+    "rollup-plugin-typescript2": "^0.31.1",
+    "typescript": "^4.5.2"
+  },
+  "dependencies": {
+    "classnames": "^2.3.1",
+    "date-fns": "^2.27.0"
+  }
+}

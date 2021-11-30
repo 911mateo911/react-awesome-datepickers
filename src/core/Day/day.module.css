@@ -1,0 +1,14 @@
+.day-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  user-select: none;
+}
+
+.day-hidden {
+  visibility: hidden;
+  pointer-events: none;
+}

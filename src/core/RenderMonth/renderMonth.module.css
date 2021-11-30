@@ -1,0 +1,10 @@
+.months-wrapper {
+  display: grid;
+  width: fit-content;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+}
+
+.month {
+  width: 40px;
+  height: 40px;
+}
