@@ -8,6 +8,7 @@ const path = require('path');
 const svgr = require('@svgr/rollup');
 const typescript = require('rollup-plugin-typescript2');
 const commonJS = require('@rollup/plugin-commonjs');
+const { terser } = require('rollup-plugin-terser');
 
 const currentWorkingPath = process.cwd();
 
@@ -36,7 +37,8 @@ const inputOptions = {
         typescript({ useTsconfigDeclarationDir: true }),
         commonJS({
             include: 'node_modules/**'
-        })
+        }),
+        terser()
     ],
 };
 const outputOptions = [
