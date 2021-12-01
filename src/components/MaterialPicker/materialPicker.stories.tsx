@@ -13,9 +13,8 @@ export default {
 
 export const Default: Story<MaterialPickerProps> = args => {
     const [, setSelectedDate] = useState(args.initialSelectedDate);
-    const [, setSelectedRange] = useState<RangeDates>();
 
-    return <MaterialPicker {...args} onDateSelect={setSelectedDate} onDateRangeChange={setSelectedRange} />
+    return <MaterialPicker {...args} onDateSelect={setSelectedDate} />
 };
 
 export const DontShowOtherMonthsDays = Default.bind({});
@@ -48,9 +47,7 @@ CustomDateConstraintRanges.args = {
 }
 
 export const RangePicker = Default.bind({});
-RangePicker.args = {
-    range: true
-}
+RangePicker.args = { range: true }
 
 export const ConstrainedRangePicker = Default.bind({});
 ConstrainedRangePicker.args = {
@@ -63,11 +60,20 @@ export const WithSelectedStartDateRangePicker = Default.bind({});
 WithSelectedStartDateRangePicker.args = {
     range: true,
     endFrom: new Date(),
-    startDate: sub(new Date(), { weeks: 1 })
+    dateRange: { startDate: sub(new Date(), { weeks: 1 }) }
 }
 
 export const WithCustomNavButtons = Default.bind({});
 WithCustomNavButtons.args = {
     prevButton: <p>Prev</p>,
     nextButton: <h1>Next</h1>
+}
+
+export const WithCustomResetButton: Story<MaterialPickerProps> = args => {
+    const [range, setRange] = useState<RangeDates>({ startDate: null, endDate: null });
+
+    return <>
+        <button onClick={() => setRange({ startDate: null, endDate: null })} >Reset</button>
+        <MaterialPicker dateRange={range} range onDateRangeChange={setRange} {...args} />
+    </>
 }

@@ -1,7 +1,8 @@
 import { ReactElement } from "react";
 import { RenderMonthProps } from "../../core";
+import { RangeDates } from '../../core'
 
-type ToExclude = 'selectedDate' | 'currentDatePosition' | 'dateRange' | 'setDateRange'
+type ToExclude = 'selectedDate' | 'currentDatePosition' | 'setDateRange' | 'dateRange'
 
 export interface MaterialPickerProps extends Omit<RenderMonthProps, ToExclude> {
     nextButton?: ReactElement
@@ -11,6 +12,5 @@ export interface MaterialPickerProps extends Omit<RenderMonthProps, ToExclude> {
     prevButtonWrapperClassName?: string
     initialSelectedDate?: Date | null
     initialMonthPosition?: Date
-    startDate?: Date
-    endDate?: Date
+    dateRange?: RangeDates
 }

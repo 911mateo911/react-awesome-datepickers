@@ -1,6 +1,6 @@
 import React, { FC, useState, useEffect, useRef } from 'react';
 import { MaterialPickerProps } from './materialPicker.interface';
-import { RangeDates, RenderMonth } from '../../core';
+import { RenderMonth, RangeDates } from '../../core';
 import styles from './materialPicker.module.css';
 import { format } from 'date-fns';
 import { enGB } from 'date-fns/locale';
@@ -22,8 +22,6 @@ export const MaterialPicker: FC<MaterialPickerProps> = ({
     hideNavigationButtons,
     nextButtonWrapperClassName,
     prevButtonWrapperClassName,
-    startDate,
-    endDate,
     startFrom,
     endFrom,
     showNotThisMonthDays,
@@ -36,13 +34,14 @@ export const MaterialPicker: FC<MaterialPickerProps> = ({
     initialMonthPosition,
     lastInRangeClassName,
     firstInRangeClassName,
+    dateRange
 }) => {
-    const rangeDate = useRef<RangeDates>({
-        startDate: startDate,
-        endDate: endDate
-    })
-    const setRange = (range: RangeDates) => {
-        rangeDate.current = range;
+    const [currentDateRange, setCurrentDateRange] = useState<RangeDates>({
+        startDate: dateRange?.startDate,
+        endDate: dateRange?.endDate
+    });
+    const handleCurrentDateRangeChange = (range: RangeDates) => {
+        setCurrentDateRange(range);
 
         onDateRangeChange(range);
     }
@@ -59,7 +58,12 @@ export const MaterialPicker: FC<MaterialPickerProps> = ({
     useEffect(() => {
         // update onPositionChanged from parent
         onPositionChanged(currentDatePosition);
-    }, [currentDatePosition, onPositionChanged])
+    }, [currentDatePosition, onPositionChanged]);
+
+    useEffect(() => {
+        // keep local state updated with parent state
+        setCurrentDateRange({ startDate: dateRange?.startDate, endDate: dateRange?.endDate });
+    }, [dateRange]);
 
     const handleDateSelection = (date: Date) => {
         if (formatToComparableDate(date) === formatToComparableDate(selectedDate.current || new Date())) return;
@@ -72,7 +76,7 @@ export const MaterialPicker: FC<MaterialPickerProps> = ({
 
         let dateString = ' - ';
 
-        const { startDate, endDate } = rangeDate.current;
+        const { startDate, endDate } = currentDateRange;
 
         if (startDate) dateString = format(startDate, 'eee, MMM dd') + dateString;
         if (endDate) dateString = dateString + format(endDate, 'eee, MMM dd');
@@ -152,15 +156,14 @@ export const MaterialPicker: FC<MaterialPickerProps> = ({
                     endFrom={endFrom}
                     showNotThisMonthDays={showNotThisMonthDays}
                     inRangeHoverClassName={classNames(styles['material-inRange_hover'], inRangeHoverClassName)}
-                    onDateRangeChange={setRange}
+                    onDateRangeChange={handleCurrentDateRangeChange}
                     inRangeClassName={classNames(styles['material-inRange'], inRangeClassName)}
                     dayClassName={classNames(dayClassName, styles['material-day'])}
                     lastInRangeClassName={classNames(lastInRangeClassName, styles['material-last-range-day'])}
                     firstInRangeClassName={classNames(firstInRangeClassName, styles['material-first-range-day'])}
                     wrapperClassName={wrapperClassName}
                     notThisMonthClassName={classNames(notThisMonthClassName, styles['notThisMonth-day'])}
-                    dateRange={rangeDate.current}
-                    setDateRange={setRange}
+                    dateRange={currentDateRange}
                 />
             </div>
         </div>

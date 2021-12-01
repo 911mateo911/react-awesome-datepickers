@@ -15,6 +15,5 @@ export interface RenderMonthProps extends MonthNDay {
     changeMonthIfDateOutside?: boolean
     onPositionChanged?: (position: Date) => void
     onDateRangeChange?: (range: RangeDates) => void
-    dateRange: RangeDates,
-    setDateRange: (range: RangeDates) => void
+    dateRange: RangeDates
 }

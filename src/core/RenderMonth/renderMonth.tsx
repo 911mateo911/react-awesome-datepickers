@@ -33,18 +33,12 @@ export const RenderMonth: FC<RenderMonthProps> = ({
     endFrom,
     lastInRangeClassName,
     firstInRangeClassName,
-    setDateRange,
     dateRange
 }) => {
     // if in range, the first date is selected
     const [selectsEndDate, setSelectsEndDate] = useState<boolean>(!!dateRange.startDate);
     // current date which is hovered on
     const [dateBeingHoveredOn, setDateBeingHoveredOn] = useState<Date | null | undefined>(null);
-
-    useEffect(() => {
-        // call callback on parent
-        onDateRangeChange(dateRange);
-    }, [dateRange, onDateRangeChange]);
 
     useEffect(() => {
         // reset hover if endDate is Present
@@ -72,24 +66,24 @@ export const RenderMonth: FC<RenderMonthProps> = ({
                 // modify end date if selectsEndDate is checked
                 if (selectsEndDate && dateRange.startDate) {
                     if (isBefore(date, dateRange.startDate)) {
-                        return setDateRange({
+                        return onDateRangeChange({
                             startDate: date,
                             endDate: dateRange.startDate
                         })
                     }
-                    setDateRange({ ...dateRange, endDate: date });
+                    onDateRangeChange({ ...dateRange, endDate: date });
                 }
                 else {
                     // set that it checks endDate as startDate is checked
                     setSelectsEndDate(true);
-                    return setDateRange({ ...dateRange, startDate: date });
+                    return onDateRangeChange({ ...dateRange, startDate: date });
                 }
             }
 
             // or just call single Callback
             onDateSelect(date);
         },
-        [dateRange, onDateSelect, range, selectsEndDate, setDateRange],
+        [dateRange, onDateSelect, range, selectsEndDate, onDateRangeChange],
     )
 
     const handleNotThisMonthClick = useCallback((date: Date) => {
