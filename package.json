@@ -1,6 +1,6 @@
 {
   "name": "react-awesome-datepickers",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "awesome datepickers for react apps",
   "scripts": {
     "build": "rm -rf ./dist && node bundle-builder.js && npm version patch",
