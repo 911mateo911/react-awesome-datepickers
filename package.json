@@ -7,7 +7,9 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "prepare": "husky install",
-    "cm": "cz"
+    "cm": "cz",
+    "predeploy": "npm run build-storybook",
+    "deploy-storybook": "gh-pages -d storybook-static"
   },
   "main": "dist/react-awesome-datepickers.cjs.js",
   "module": "dist/react-awesome-datepickers.esm.js",
@@ -29,6 +31,7 @@
       "path": "cz-customizable"
     }
   },
+  "homepage": "http://911mateo911.github.io/react-awesome-datepickers",
   "author": "911mateo911",
   "license": "ISC",
   "devDependencies": {
@@ -54,6 +57,7 @@
     "commitizen": "^4.2.4",
     "commitlint-config-gitmoji": "^2.2.5",
     "cz-customizable": "^6.3.0",
+    "gh-pages": "^3.2.3",
     "husky": "^7.0.0",
     "postcss": "^8.4.4",
     "react": "^17.0.2",
