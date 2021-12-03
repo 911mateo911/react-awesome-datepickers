@@ -8,6 +8,7 @@ import { formatToComparableDate, getNextMonth, getPrevMonth, getWeekDays } from 
 import classNames from 'classnames';
 import { ReactComponent as LeftIcon } from './icons/leftIcon.svg';
 import { ReactComponent as RightIcon } from './icons/rightIcon.svg';
+import { getThemeableClassNames } from '../../core';
 
 export const MaterialPicker: FC<MaterialPickerProps> = ({
     dayClassName,
@@ -34,7 +35,8 @@ export const MaterialPicker: FC<MaterialPickerProps> = ({
     initialMonthPosition,
     lastInRangeClassName,
     firstInRangeClassName,
-    dateRange
+    dateRange,
+    darkMode = false
 }) => {
     const [currentDateRange, setCurrentDateRange] = useState<RangeDates>({
         startDate: dateRange?.startDate,
@@ -144,25 +146,25 @@ export const MaterialPicker: FC<MaterialPickerProps> = ({
                         </p>)}
                 </div>
                 <RenderMonth
-                    selectedClassName={classNames(selectedClassName, styles['selected-day'])}
+                    selectedClassName={getThemeableClassNames(darkMode, styles['selected-day'], '', selectedClassName)}
                     changeMonthIfDateOutside={changeMonthIfDateOutside}
                     onPositionChanged={setCurrentDatePosition}
                     onDateSelect={handleDateSelection}
-                    disabledClassName={classNames(styles['material-disabled'], disabledClassName)}
+                    disabledClassName={getThemeableClassNames(darkMode, styles['material-disabled'], '', disabledClassName)}
                     currentDatePosition={currentDatePosition}
                     selectedDate={selectedDate.current}
                     range={range}
                     startFrom={startFrom}
                     endFrom={endFrom}
                     showNotThisMonthDays={showNotThisMonthDays}
-                    inRangeHoverClassName={classNames(styles['material-inRange_hover'], inRangeHoverClassName)}
+                    inRangeHoverClassName={getThemeableClassNames(darkMode, styles['material-inRange_hover'], '', inRangeHoverClassName)}
                     onDateRangeChange={handleCurrentDateRangeChange}
-                    inRangeClassName={classNames(styles['material-inRange'], inRangeClassName)}
-                    dayClassName={classNames(dayClassName, styles['material-day'])}
-                    lastInRangeClassName={classNames(lastInRangeClassName, styles['material-last-range-day'])}
-                    firstInRangeClassName={classNames(firstInRangeClassName, styles['material-first-range-day'])}
+                    inRangeClassName={getThemeableClassNames(darkMode, styles['material-inRange'], '', inRangeClassName)}
+                    dayClassName={getThemeableClassNames(darkMode, styles['material-day'], '', dayClassName)}
+                    lastInRangeClassName={getThemeableClassNames(darkMode, styles['material-last-range-day'], '', lastInRangeClassName)}
+                    firstInRangeClassName={getThemeableClassNames(darkMode, styles['material-first-range-day'], '', firstInRangeClassName)}
                     wrapperClassName={wrapperClassName}
-                    notThisMonthClassName={classNames(notThisMonthClassName, styles['notThisMonth-day'])}
+                    notThisMonthClassName={getThemeableClassNames(darkMode, styles['notThisMonth-day'], '', notThisMonthClassName)}
                     dateRange={currentDateRange}
                 />
             </div>

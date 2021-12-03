@@ -17,6 +17,11 @@ export const Default: Story<MaterialPickerProps> = args => {
     return <MaterialPicker {...args} onDateSelect={setSelectedDate} />
 };
 
+export const DarkDefault = Default.bind({});
+DarkDefault.args = {
+    darkMode: true
+}
+
 export const DontShowOtherMonthsDays = Default.bind({});
 DontShowOtherMonthsDays.args = {
     showNotThisMonthDays: false
