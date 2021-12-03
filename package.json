@@ -5,7 +5,9 @@
   "scripts": {
     "build": "rm -rf ./dist && node bundle-builder.js && npm version patch",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "prepare": "husky install",
+    "cm": "cz"
   },
   "main": "dist/react-awesome-datepickers.cjs.js",
   "module": "dist/react-awesome-datepickers.esm.js",
@@ -22,6 +24,11 @@
   "files": [
     "/dist"
   ],
+  "config": {
+    "commitizen": {
+      "path": "cz-customizable"
+    }
+  },
   "author": "911mateo911",
   "license": "ISC",
   "devDependencies": {
@@ -29,6 +36,7 @@
     "@babel/preset-env": "^7.16.4",
     "@babel/preset-react": "^7.16.0",
     "@babel/preset-typescript": "^7.16.0",
+    "@commitlint/cli": "^15.0.0",
     "@rollup/plugin-babel": "^5.3.0",
     "@rollup/plugin-commonjs": "^21.0.1",
     "@rollup/plugin-node-resolve": "^13.0.6",
@@ -43,6 +51,10 @@
     "@types/react-dom": "^17.0.11",
     "babel-loader": "^8.2.3",
     "babel-plugin-inline-react-svg": "^2.0.1",
+    "commitizen": "^4.2.4",
+    "commitlint-config-gitmoji": "^2.2.5",
+    "cz-customizable": "^6.3.0",
+    "husky": "^7.0.0",
     "postcss": "^8.4.4",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
