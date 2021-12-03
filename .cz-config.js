@@ -37,11 +37,9 @@ module.exports = {
 
     scopes: [
         { name: 'ui' },
-        { name: 'android' },
-        { name: 'ios' },
-        { name: 'home' },
-        { name: 'planner' },
-        { name: 'settings' },
+        { name: 'core' },
+        { name: 'components' },
+        { name: 'utils' }
     ],
 
     scopeOverrides: {
@@ -50,7 +48,6 @@ module.exports = {
 
     allowCustomScopes: true,
     allowBreakingChanges: ['feat', 'fix'],
-    // skip any questions you want
     skipQuestions: ['body'],
     subjectLimit: 100,
 };
