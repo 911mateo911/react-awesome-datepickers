@@ -82,3 +82,12 @@ export const WithCustomResetButton: Story<MaterialPickerProps> = args => {
         <MaterialPicker dateRange={range} range onDateRangeChange={setRange} {...args} />
     </>
 }
+
+export const ToggleDarkMode: Story<MaterialPickerProps> = args => {
+    const [isDarkMode, setDarkMode] = useState<boolean>(false);
+
+    return <>
+        <MaterialPicker {...args} darkMode={isDarkMode} selectedClassName='light:myClass - dark:myDarkClass' />
+        <button onClick={() => setDarkMode(dark => !dark)} >Change</button>
+    </>
+}

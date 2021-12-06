@@ -1,11 +1,19 @@
 .material-picker-container {
-  background: #2ecc71;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.12), 0px 6px 12px rgba(0, 0, 0, 0.12),
     0px 1px 16px rgba(0, 0, 0, 0.12);
   border-radius: 8px;
   width: fit-content;
   font-family: Roboto;
   user-select: none;
+  transition: all 0.3s;
+}
+
+.material-picker-container_light {
+  background: #2ecc71;
+}
+
+.material-picker-dark-container_dark {
+  background: #4fb8ff;
 }
 
 .material-day {
