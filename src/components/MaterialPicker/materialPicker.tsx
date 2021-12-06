@@ -107,7 +107,13 @@ export const MaterialPicker: FC<MaterialPickerProps> = ({
                 ) : (
                     format(selectedDate.current || new Date(), 'eee, MMM dd'))}
             </p>
-            <div className={styles['material-month-container-wrapper']} >
+            <div className={classNames(
+                styles['material-month-container-wrapper'],
+                {
+                    [styles['material-month-container-wrapper_dark']]: darkMode,
+                    [styles['material-month-container-wrapper_light']]: !darkMode
+                }
+            )} >
                 <div className={classNames(
                     styles['material-flex'],
                     styles['material-action-wrapper']
@@ -124,7 +130,13 @@ export const MaterialPicker: FC<MaterialPickerProps> = ({
                             onClick={() => setCurrentDatePosition(getPrevMonth(currentDatePosition))}
                             className={styles['material-icon']}
                         />))}
-                    <p className={styles['material-action-year']} >{format(currentDatePosition, 'MMM, yyyy')}</p>
+                    <p className={classNames(
+                        styles['material-action-year'],
+                        {
+                            [styles['material-action-year_dark']]: darkMode,
+                            [styles['material-action-year_light']]: !darkMode
+                        }
+                    )} >{format(currentDatePosition, 'MMM, yyyy')}</p>
                     {(!hideNavigationButtons) && (nextButton ? (
                         <div
                             className={nextButtonWrapperClassName}
@@ -144,7 +156,11 @@ export const MaterialPicker: FC<MaterialPickerProps> = ({
                         <p
                             className={classNames(
                                 styles['material-weekDay'],
-                                styles['material-flex']
+                                styles['material-flex'],
+                                {
+                                    [styles['material-weekDay_dark']]: darkMode,
+                                    [styles['material-weekDay_light']]: !darkMode
+                                }
                             )}
                             key={weekDay}
                         >
@@ -152,7 +168,7 @@ export const MaterialPicker: FC<MaterialPickerProps> = ({
                         </p>)}
                 </div>
                 <RenderMonth
-                    selectedClassName={getThemeableClassNames(darkMode, styles['selected-day'], '<modifyWithDarkClasses>', selectedClassName)}
+                    selectedClassName={getThemeableClassNames(darkMode, styles['selected-day_light'], styles['selected-day_dark'], selectedClassName)}
                     changeMonthIfDateOutside={changeMonthIfDateOutside}
                     onPositionChanged={setCurrentDatePosition}
                     onDateSelect={handleDateSelection}
@@ -166,7 +182,7 @@ export const MaterialPicker: FC<MaterialPickerProps> = ({
                     inRangeHoverClassName={getThemeableClassNames(darkMode, styles['material-inRange_hover'], '<modifyWithDarkClasses>', inRangeHoverClassName)}
                     onDateRangeChange={handleCurrentDateRangeChange}
                     inRangeClassName={getThemeableClassNames(darkMode, styles['material-inRange'], '<modifyWithDarkClasses>', inRangeClassName)}
-                    dayClassName={getThemeableClassNames(darkMode, styles['material-day'], '<modifyWithDarkClasses>', dayClassName)}
+                    dayClassName={classNames(styles['material-day'], getThemeableClassNames(darkMode, styles['material-day_light'], styles['material-day_dark'], dayClassName))}
                     lastInRangeClassName={getThemeableClassNames(darkMode, styles['material-last-range-day'], '<modifyWithDarkClasses>', lastInRangeClassName)}
                     firstInRangeClassName={getThemeableClassNames(darkMode, styles['material-first-range-day'], '<modifyWithDarkClasses>', firstInRangeClassName)}
                     wrapperClassName={wrapperClassName}

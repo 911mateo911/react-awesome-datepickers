@@ -12,7 +12,6 @@ import styles from './renderMonth.module.css';
 import { Day } from '../../core/Day';
 import classNames from 'classnames';
 import { isValid } from 'date-fns';
-import { getThemeableClassNames } from '../classNameUtils';
 
 export const RenderMonth: FC<RenderMonthProps> = ({
     dayClassName,

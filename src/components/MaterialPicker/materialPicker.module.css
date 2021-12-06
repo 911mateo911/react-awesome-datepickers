@@ -19,28 +19,48 @@
 .material-day {
   height: 48px;
   width: 48px;
-  color: #263238;
   border-radius: 50%;
   font-size: 1rem;
   position: relative;
   letter-spacing: 0.44px;
 }
 
-.material-day:hover {
+.material-day_light {
+  color: #263238;
+}
+
+.material-day_dark {
+  color: #e0e0e0;
+}
+
+.material-day_light:hover {
   background-color: #f0f0f0;
+}
+
+.material-day_dark:hover {
+  background-color: #272727;
 }
 
 .material-day > span {
   z-index: 1;
 }
 
-.selected-day {
+.selected-day_light {
   color: white;
   background-color: #2980b9;
 }
 
-.selected-day:hover {
+.selected-day_dark {
+  color: #121212;
+  background-color: #89ed5b;
+}
+
+.selected-day_light:hover {
   background-color: #2675aa;
+}
+
+.selected-day_dark:hover {
+  background-color: #89ed5b;
 }
 
 .notThisMonth-day {
@@ -49,8 +69,16 @@
 
 .material-month-container-wrapper {
   border-radius: 8px;
-  background-color: white;
   padding: 8px;
+  transition: all 0.3s;
+}
+
+.material-month-container-wrapper_light {
+  background-color: white;
+}
+
+.material-month-container-wrapper_dark {
+  background-color: #121212;
 }
 
 .material-date {
@@ -86,6 +114,14 @@
   letter-spacing: 0.2px;
 }
 
+.material-weekDay_light {
+  color: #263238;
+}
+
+.material-weekDay_dark {
+  color: #e0e0e0;
+}
+
 .material-flex {
   display: flex;
   justify-content: center;
@@ -105,7 +141,14 @@
   font-size: 14px;
   margin: auto;
   letter-spacing: 0.75px;
+}
+
+.material-action-year_light {
   color: #263238;
+}
+
+.material-action-year_dark {
+  color: #e0e0e0;
 }
 
 .material-icon {
