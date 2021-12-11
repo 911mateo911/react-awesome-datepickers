@@ -92,3 +92,15 @@ export const ToggleDarkMode: Story<MaterialPickerProps> = args => {
         <button onClick={() => setDarkMode(dark => !dark)} >Change</button>
     </>
 }
+
+export const DarkRangePicker: Story<MaterialPickerProps> = args => {
+    const [range, setRange] = useState<RangeDates>();
+
+    return <MaterialPicker
+        darkMode
+        range
+        onDateRangeChange={setRange}
+        dateRange={range}
+        {...args}
+    />
+}

@@ -63,8 +63,12 @@
   background-color: #89ed5b;
 }
 
-.notThisMonth-day {
+.notThisMonth-day_light {
   color: #6d6d6d;
+}
+
+.notThisMonth-day_dark {
+  color: #29363d;
 }
 
 .material-month-container-wrapper {
@@ -160,23 +164,42 @@
   border-radius: 50%;
 }
 
-.material-icon:hover {
+.material-icon_light:hover {
   background-color: #f3f3f3;
 }
 
-.material-inRange {
+.material-icon_dark:hover {
+  background-color: #263238;
+}
+
+.material-inRange_light {
   background-color: #e0e0e0;
   border-radius: 0;
   color: #263238 !important;
 }
 
-.material-inRange:hover {
+.material-inRange_light:hover {
   background-color: #dadada;
 }
 
-.material-inRange_hover {
+.material-inRange_dark {
+  background-color: #272727;
+  border-radius: 0;
+  color: #f0f0f0 !important;
+}
+
+.material-inRange_dark:hover {
+  background-color: #242424;
+}
+
+.material-inRange_hover__light {
   background-color: #f0f0f0;
   color: #263238 !important;
+}
+
+.material-inRange_hover__dark {
+  background-color: #242424;
+  color: #f0f0f0 !important;
 }
 
 .material-disabled {
@@ -187,13 +210,22 @@
   cursor: auto;
 }
 
-.material-first-range-day {
+.material-first-range-day_light {
   background-color: #e0e0e0;
   color: white;
 }
 
-.material-first-range-day:hover {
+.material-first-range-day_dark {
+  background-color: #272727;
+  color: black;
+}
+
+.material-first-range-day_light:hover {
   background-color: #e0e0e0;
+}
+
+.material-first-range-day_dark:hover {
+  background-color: #272727;
 }
 
 .material-first-range-day::before {
@@ -201,23 +233,39 @@
   position: absolute;
   height: 100%;
   width: 100%;
-  background-color: #2980b9;
   left: 0;
   top: 0;
   border-radius: 50%;
+}
+
+.material-first-range-day_light::before {
+  background-color: #2980b9;
+}
+
+.material-first-range-day_dark::before {
+  background-color: #89ed5b;
 }
 
 div[first-selected="true"] {
   border-radius: 50% 0 0 50%;
 }
 
-.material-last-range-day {
+.material-last-range-day_light {
   background-color: #e0e0e0;
   color: white;
 }
 
-.material-last-range-day:hover {
+.material-last-range-day_dark {
+  background-color: #272727;
+  color: black;
+}
+
+.material-last-range-day_light:hover {
   background-color: #e0e0e0;
+}
+
+.material-last-range-day_dark:hover {
+  background-color: #272727;
 }
 
 .material-last-range-day::before {
@@ -225,13 +273,19 @@ div[first-selected="true"] {
   position: absolute;
   height: 100%;
   width: 100%;
-  background-color: #263238;
   left: 0;
   top: 0;
   border-radius: 50%;
 }
 
+.material-last-range-day_light::before {
+  background-color: #263238;
+}
+
+.material-last-range-day_dark::before {
+  background-color: #ffd76f;
+}
+
 div[last-selected="true"] {
   border-radius: 0 50% 50% 0;
-  color: white !important;
 }

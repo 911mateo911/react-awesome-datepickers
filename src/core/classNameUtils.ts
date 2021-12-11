@@ -3,13 +3,13 @@ import classNames from 'classnames';
 interface ThemeClassName {
     lightClass?: string,
     darkClass?: string
-} // light:<class_here> - light:<class_here>
+} // light:<class_here> - dark:<class_here>
 
 const getClassNamesForThemeType = (className: string) => {
     const indexOfSeparation = className.indexOf('-');
 
     if (indexOfSeparation < 0) console.error(`Bad className format,
-     it should be of type light:<class_here> - light:<class_here>
+     it should be of type light:<class_here> - dark:<class_here>
      -- Instead found ${className}
      `)
 
