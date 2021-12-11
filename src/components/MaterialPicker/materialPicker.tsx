@@ -8,6 +8,7 @@ import { formatToComparableDate, getNextMonth, getPrevMonth, getWeekDays } from 
 import classNames from 'classnames';
 import { ReactComponent as LeftIcon } from './icons/leftIcon.svg';
 import { ReactComponent as RightIcon } from './icons/rightIcon.svg';
+import { getThemeableClassNames } from '../../core';
 
 export const MaterialPicker: FC<MaterialPickerProps> = ({
     dayClassName,
@@ -34,7 +35,8 @@ export const MaterialPicker: FC<MaterialPickerProps> = ({
     initialMonthPosition,
     lastInRangeClassName,
     firstInRangeClassName,
-    dateRange
+    dateRange,
+    darkMode = false
 }) => {
     const [currentDateRange, setCurrentDateRange] = useState<RangeDates>({
         startDate: dateRange?.startDate,
@@ -85,7 +87,13 @@ export const MaterialPicker: FC<MaterialPickerProps> = ({
     }
 
     return (
-        <div className={styles['material-picker-container']} >
+        <div className={classNames(
+            styles['material-picker-container'],
+            {
+                [styles['material-picker-container_light']]: !darkMode,
+                [styles['material-picker-dark-container_dark']]: darkMode
+            }
+        )} >
             <p className={styles['material-year']} >{selectedDate.current ? selectedDate.current.getFullYear() : new Date().getFullYear()}</p>
             <p
                 className={classNames(
@@ -99,7 +107,13 @@ export const MaterialPicker: FC<MaterialPickerProps> = ({
                 ) : (
                     format(selectedDate.current || new Date(), 'eee, MMM dd'))}
             </p>
-            <div className={styles['material-month-container-wrapper']} >
+            <div className={classNames(
+                styles['material-month-container-wrapper'],
+                {
+                    [styles['material-month-container-wrapper_dark']]: darkMode,
+                    [styles['material-month-container-wrapper_light']]: !darkMode
+                }
+            )} >
                 <div className={classNames(
                     styles['material-flex'],
                     styles['material-action-wrapper']
@@ -114,9 +128,21 @@ export const MaterialPicker: FC<MaterialPickerProps> = ({
                     ) : (
                         <LeftIcon
                             onClick={() => setCurrentDatePosition(getPrevMonth(currentDatePosition))}
-                            className={styles['material-icon']}
+                            className={classNames(
+                                styles['material-icon'],
+                                {
+                                    [styles['material-icon_dark']]: darkMode,
+                                    [styles['material-icon_light']]: !darkMode
+                                }
+                            )}
                         />))}
-                    <p className={styles['material-action-year']} >{format(currentDatePosition, 'MMM, yyyy')}</p>
+                    <p className={classNames(
+                        styles['material-action-year'],
+                        {
+                            [styles['material-action-year_dark']]: darkMode,
+                            [styles['material-action-year_light']]: !darkMode
+                        }
+                    )} >{format(currentDatePosition, 'MMM, yyyy')}</p>
                     {(!hideNavigationButtons) && (nextButton ? (
                         <div
                             className={nextButtonWrapperClassName}
@@ -127,7 +153,13 @@ export const MaterialPicker: FC<MaterialPickerProps> = ({
                     ) : (
                         <RightIcon
                             onClick={() => setCurrentDatePosition(getNextMonth(currentDatePosition))}
-                            className={styles['material-icon']}
+                            className={classNames(
+                                styles['material-icon'],
+                                {
+                                    [styles['material-icon_dark']]: darkMode,
+                                    [styles['material-icon_light']]: !darkMode
+                                }
+                            )}
                         />
                     ))}
                 </div>
@@ -136,7 +168,11 @@ export const MaterialPicker: FC<MaterialPickerProps> = ({
                         <p
                             className={classNames(
                                 styles['material-weekDay'],
-                                styles['material-flex']
+                                styles['material-flex'],
+                                {
+                                    [styles['material-weekDay_dark']]: darkMode,
+                                    [styles['material-weekDay_light']]: !darkMode
+                                }
                             )}
                             key={weekDay}
                         >
@@ -144,25 +180,57 @@ export const MaterialPicker: FC<MaterialPickerProps> = ({
                         </p>)}
                 </div>
                 <RenderMonth
-                    selectedClassName={classNames(selectedClassName, styles['selected-day'])}
+                    selectedClassName={getThemeableClassNames(
+                        darkMode,
+                        styles['selected-day_light'],
+                        styles['selected-day_dark'],
+                        selectedClassName)}
                     changeMonthIfDateOutside={changeMonthIfDateOutside}
                     onPositionChanged={setCurrentDatePosition}
                     onDateSelect={handleDateSelection}
-                    disabledClassName={classNames(styles['material-disabled'], disabledClassName)}
+                    disabledClassName={getThemeableClassNames(
+                        darkMode,
+                        styles['material-disabled'],
+                        '<modifyWithDarkClasses>',
+                        disabledClassName)}
                     currentDatePosition={currentDatePosition}
                     selectedDate={selectedDate.current}
                     range={range}
                     startFrom={startFrom}
                     endFrom={endFrom}
                     showNotThisMonthDays={showNotThisMonthDays}
-                    inRangeHoverClassName={classNames(styles['material-inRange_hover'], inRangeHoverClassName)}
+                    inRangeHoverClassName={getThemeableClassNames(
+                        darkMode,
+                        styles['material-inRange_hover__light'],
+                        styles['material-inRange_hover__dark'],
+                        inRangeHoverClassName)}
                     onDateRangeChange={handleCurrentDateRangeChange}
-                    inRangeClassName={classNames(styles['material-inRange'], inRangeClassName)}
-                    dayClassName={classNames(dayClassName, styles['material-day'])}
-                    lastInRangeClassName={classNames(lastInRangeClassName, styles['material-last-range-day'])}
-                    firstInRangeClassName={classNames(firstInRangeClassName, styles['material-first-range-day'])}
+                    inRangeClassName={getThemeableClassNames(
+                        darkMode,
+                        styles['material-inRange_light'],
+                        styles['material-inRange_dark'],
+                        inRangeClassName)}
+                    dayClassName={classNames(styles['material-day'], getThemeableClassNames(
+                        darkMode,
+                        styles['material-day_light'],
+                        styles['material-day_dark'],
+                        dayClassName))}
+                    lastInRangeClassName={classNames(styles['material-last-range-day'], getThemeableClassNames(
+                        darkMode,
+                        styles['material-last-range-day_light'],
+                        styles['material-last-range-day_dark'],
+                        lastInRangeClassName))}
+                    firstInRangeClassName={classNames(styles['material-first-range-day'], getThemeableClassNames(
+                        darkMode,
+                        styles['material-first-range-day_light'],
+                        styles['material-first-range-day_dark'],
+                        firstInRangeClassName))}
                     wrapperClassName={wrapperClassName}
-                    notThisMonthClassName={classNames(notThisMonthClassName, styles['notThisMonth-day'])}
+                    notThisMonthClassName={getThemeableClassNames(
+                        darkMode,
+                        styles['notThisMonth-day_light'],
+                        styles['notThisMonth-day_dark'],
+                        notThisMonthClassName)}
                     dateRange={currentDateRange}
                 />
             </div>

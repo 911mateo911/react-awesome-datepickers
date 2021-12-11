@@ -1,17 +1,17 @@
 import React, { FC, useMemo, useCallback, useEffect, useState } from 'react';
 import { RenderMonthProps } from './renderMonth.interface';
-import { getYear, getMonth, isBefore } from 'date-fns';
+import { getYear, getMonth, isBefore, isValid } from 'date-fns';
 import {
     getNOfDaysForMonth,
     getPadStart,
     getPadEnd,
     getPrevMonth,
-    getNextMonth
+    getNextMonth,
+    formatToComparableDate
 } from "../../utils";
 import styles from './renderMonth.module.css';
 import { Day } from '../../core/Day';
 import classNames from 'classnames';
-import { isValid } from 'date-fns';
 
 export const RenderMonth: FC<RenderMonthProps> = ({
     dayClassName,
@@ -71,6 +71,12 @@ export const RenderMonth: FC<RenderMonthProps> = ({
                             endDate: dateRange.startDate
                         })
                     }
+
+                    // if you click the endDate the same as the startDate then reset endDate
+                    if (formatToComparableDate(dateRange.startDate) === formatToComparableDate(date)) {
+                        return onDateRangeChange({ startDate: date, endDate: null });
+                    }
+
                     onDateRangeChange({ ...dateRange, endDate: date });
                 }
                 else {

@@ -17,6 +17,11 @@ export const Default: Story<MaterialPickerProps> = args => {
     return <MaterialPicker {...args} onDateSelect={setSelectedDate} />
 };
 
+export const DarkDefault = Default.bind({});
+DarkDefault.args = {
+    darkMode: true
+}
+
 export const DontShowOtherMonthsDays = Default.bind({});
 DontShowOtherMonthsDays.args = {
     showNotThisMonthDays: false
@@ -76,4 +81,26 @@ export const WithCustomResetButton: Story<MaterialPickerProps> = args => {
         <button onClick={() => setRange({ startDate: null, endDate: null })} >Reset</button>
         <MaterialPicker dateRange={range} range onDateRangeChange={setRange} {...args} />
     </>
+}
+
+export const ToggleDarkMode: Story<MaterialPickerProps> = args => {
+    const [isDarkMode, setDarkMode] = useState<boolean>(false);
+    const [, setSelectedDate] = useState(args.initialSelectedDate);
+
+    return <>
+        <MaterialPicker {...args} onDateSelect={setSelectedDate} darkMode={isDarkMode} />
+        <button onClick={() => setDarkMode(dark => !dark)} >Change</button>
+    </>
+}
+
+export const DarkRangePicker: Story<MaterialPickerProps> = args => {
+    const [range, setRange] = useState<RangeDates>();
+
+    return <MaterialPicker
+        darkMode
+        range
+        onDateRangeChange={setRange}
+        dateRange={range}
+        {...args}
+    />
 }

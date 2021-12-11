@@ -1,48 +1,88 @@
 .material-picker-container {
-  background: #2ecc71;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.12), 0px 6px 12px rgba(0, 0, 0, 0.12),
     0px 1px 16px rgba(0, 0, 0, 0.12);
   border-radius: 8px;
   width: fit-content;
   font-family: Roboto;
   user-select: none;
+  transition: all 0.3s;
+}
+
+.material-picker-container_light {
+  background: #2ecc71;
+}
+
+.material-picker-dark-container_dark {
+  background: #4fb8ff;
 }
 
 .material-day {
   height: 48px;
   width: 48px;
-  color: #263238;
   border-radius: 50%;
   font-size: 1rem;
   position: relative;
   letter-spacing: 0.44px;
 }
 
-.material-day:hover {
+.material-day_light {
+  color: #263238;
+}
+
+.material-day_dark {
+  color: #e0e0e0;
+}
+
+.material-day_light:hover {
   background-color: #f0f0f0;
+}
+
+.material-day_dark:hover {
+  background-color: #272727;
 }
 
 .material-day > span {
   z-index: 1;
 }
 
-.selected-day {
+.selected-day_light {
   color: white;
   background-color: #2980b9;
 }
 
-.selected-day:hover {
+.selected-day_dark {
+  color: #121212;
+  background-color: #89ed5b;
+}
+
+.selected-day_light:hover {
   background-color: #2675aa;
 }
 
-.notThisMonth-day {
+.selected-day_dark:hover {
+  background-color: #89ed5b;
+}
+
+.notThisMonth-day_light {
   color: #6d6d6d;
+}
+
+.notThisMonth-day_dark {
+  color: #29363d;
 }
 
 .material-month-container-wrapper {
   border-radius: 8px;
-  background-color: white;
   padding: 8px;
+  transition: all 0.3s;
+}
+
+.material-month-container-wrapper_light {
+  background-color: white;
+}
+
+.material-month-container-wrapper_dark {
+  background-color: #121212;
 }
 
 .material-date {
@@ -78,6 +118,14 @@
   letter-spacing: 0.2px;
 }
 
+.material-weekDay_light {
+  color: #263238;
+}
+
+.material-weekDay_dark {
+  color: #e0e0e0;
+}
+
 .material-flex {
   display: flex;
   justify-content: center;
@@ -97,7 +145,14 @@
   font-size: 14px;
   margin: auto;
   letter-spacing: 0.75px;
+}
+
+.material-action-year_light {
   color: #263238;
+}
+
+.material-action-year_dark {
+  color: #e0e0e0;
 }
 
 .material-icon {
@@ -109,23 +164,42 @@
   border-radius: 50%;
 }
 
-.material-icon:hover {
+.material-icon_light:hover {
   background-color: #f3f3f3;
 }
 
-.material-inRange {
+.material-icon_dark:hover {
+  background-color: #263238;
+}
+
+.material-inRange_light {
   background-color: #e0e0e0;
   border-radius: 0;
   color: #263238 !important;
 }
 
-.material-inRange:hover {
+.material-inRange_light:hover {
   background-color: #dadada;
 }
 
-.material-inRange_hover {
+.material-inRange_dark {
+  background-color: #272727;
+  border-radius: 0;
+  color: #f0f0f0 !important;
+}
+
+.material-inRange_dark:hover {
+  background-color: #242424;
+}
+
+.material-inRange_hover__light {
   background-color: #f0f0f0;
   color: #263238 !important;
+}
+
+.material-inRange_hover__dark {
+  background-color: #242424;
+  color: #f0f0f0 !important;
 }
 
 .material-disabled {
@@ -136,13 +210,22 @@
   cursor: auto;
 }
 
-.material-first-range-day {
+.material-first-range-day_light {
   background-color: #e0e0e0;
   color: white;
 }
 
-.material-first-range-day:hover {
+.material-first-range-day_dark {
+  background-color: #272727;
+  color: black;
+}
+
+.material-first-range-day_light:hover {
   background-color: #e0e0e0;
+}
+
+.material-first-range-day_dark:hover {
+  background-color: #272727;
 }
 
 .material-first-range-day::before {
@@ -150,23 +233,39 @@
   position: absolute;
   height: 100%;
   width: 100%;
-  background-color: #2980b9;
   left: 0;
   top: 0;
   border-radius: 50%;
+}
+
+.material-first-range-day_light::before {
+  background-color: #2980b9;
+}
+
+.material-first-range-day_dark::before {
+  background-color: #89ed5b;
 }
 
 div[first-selected="true"] {
   border-radius: 50% 0 0 50%;
 }
 
-.material-last-range-day {
+.material-last-range-day_light {
   background-color: #e0e0e0;
   color: white;
 }
 
-.material-last-range-day:hover {
+.material-last-range-day_dark {
+  background-color: #272727;
+  color: black;
+}
+
+.material-last-range-day_light:hover {
   background-color: #e0e0e0;
+}
+
+.material-last-range-day_dark:hover {
+  background-color: #272727;
 }
 
 .material-last-range-day::before {
@@ -174,13 +273,19 @@ div[first-selected="true"] {
   position: absolute;
   height: 100%;
   width: 100%;
-  background-color: #263238;
   left: 0;
   top: 0;
   border-radius: 50%;
 }
 
+.material-last-range-day_light::before {
+  background-color: #263238;
+}
+
+.material-last-range-day_dark::before {
+  background-color: #ffd76f;
+}
+
 div[last-selected="true"] {
   border-radius: 0 50% 50% 0;
-  color: white !important;
 }
