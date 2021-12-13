@@ -5,6 +5,7 @@ import { sub } from 'date-fns';
 import { useState } from 'react';
 import { MaterialPicker } from './materialPicker';
 import { MaterialPickerProps } from './materialPicker.interface';
+import { LOCALE } from '../../core/locale';
 
 export default {
     title: 'MaterialPicker',
@@ -49,6 +50,15 @@ CustomDateConstraintRanges.args = {
     endFrom: new Date(2000, 6, 30),
     initialMonthPosition: new Date(2000, 6, 26),
     initialSelectedDate: new Date(2000, 6, 25)
+}
+
+export const CustomDateDarkConstraints = Default.bind({});
+CustomDateDarkConstraints.args = {
+    startFrom: new Date(2000, 6, 27),
+    endFrom: new Date(2000, 6, 30),
+    initialMonthPosition: new Date(2000, 6, 26),
+    initialSelectedDate: new Date(2000, 6, 25),
+    darkMode: true
 }
 
 export const RangePicker = Default.bind({});
@@ -103,4 +113,14 @@ export const DarkRangePicker: Story<MaterialPickerProps> = args => {
         dateRange={range}
         {...args}
     />
+}
+
+export const AlbanianPicker = Default.bind({});
+AlbanianPicker.args = {
+    locale: LOCALE.sq
+}
+
+export const WithCustomWeekDaysLength = Default.bind({});
+WithCustomWeekDaysLength.args = {
+    weekDaysLength: 3
 }
