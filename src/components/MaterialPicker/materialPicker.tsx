@@ -3,12 +3,12 @@ import { MaterialPickerProps } from './materialPicker.interface';
 import { RenderMonth, RangeDates } from '../../core';
 import styles from './materialPicker.module.css';
 import { format } from 'date-fns';
-import { enGB } from 'date-fns/locale';
 import { formatToComparableDate, getNextMonth, getPrevMonth, getWeekDays } from '../../utils';
 import classNames from 'classnames';
 import { ReactComponent as LeftIcon } from './icons/leftIcon.svg';
 import { ReactComponent as RightIcon } from './icons/rightIcon.svg';
 import { getThemeableClassNames } from '../../core';
+import { LOCALE } from '../../core/locale';
 
 export const MaterialPicker: FC<MaterialPickerProps> = ({
     dayClassName,
@@ -36,7 +36,12 @@ export const MaterialPicker: FC<MaterialPickerProps> = ({
     lastInRangeClassName,
     firstInRangeClassName,
     dateRange,
-    darkMode = false
+    darkMode = false,
+    locale = LOCALE.enGB,
+    weekDaysFormat,
+    weekDaysLength,
+    selectedDateFormat,
+    datePositionFormat
 }) => {
     const [currentDateRange, setCurrentDateRange] = useState<RangeDates>({
         startDate: dateRange?.startDate,
@@ -80,8 +85,8 @@ export const MaterialPicker: FC<MaterialPickerProps> = ({
 
         const { startDate, endDate } = currentDateRange;
 
-        if (startDate) dateString = format(startDate, 'eee, MMM dd') + dateString;
-        if (endDate) dateString = dateString + format(endDate, 'eee, MMM dd');
+        if (startDate) dateString = format(startDate, (selectedDateFormat ?? 'eee, MMM dd'), { locale }) + dateString;
+        if (endDate) dateString = dateString + format(endDate, (selectedDateFormat ?? 'eee, MMM dd'), { locale });
 
         return dateString;
     }
@@ -105,7 +110,7 @@ export const MaterialPicker: FC<MaterialPickerProps> = ({
             >
                 {range ? (getRangePickerFormattedDate()
                 ) : (
-                    format(selectedDate.current || new Date(), 'eee, MMM dd'))}
+                    format(selectedDate.current || new Date(), (selectedDateFormat ?? 'eee, MMM dd'), { locale }))}
             </p>
             <div className={classNames(
                 styles['material-month-container-wrapper'],
@@ -142,7 +147,7 @@ export const MaterialPicker: FC<MaterialPickerProps> = ({
                             [styles['material-action-year_dark']]: darkMode,
                             [styles['material-action-year_light']]: !darkMode
                         }
-                    )} >{format(currentDatePosition, 'MMM, yyyy')}</p>
+                    )} >{format(currentDatePosition, (datePositionFormat ?? 'MMM, yyyy'), { locale })}</p>
                     {(!hideNavigationButtons) && (nextButton ? (
                         <div
                             className={nextButtonWrapperClassName}
@@ -164,7 +169,7 @@ export const MaterialPicker: FC<MaterialPickerProps> = ({
                     ))}
                 </div>
                 <div className={styles['material-flex']} >
-                    {getWeekDays(enGB, 2).map(weekDay =>
+                    {getWeekDays(locale, (weekDaysLength ?? 2), weekDaysFormat).map(weekDay =>
                         <p
                             className={classNames(
                                 styles['material-weekDay'],
@@ -188,11 +193,11 @@ export const MaterialPicker: FC<MaterialPickerProps> = ({
                     changeMonthIfDateOutside={changeMonthIfDateOutside}
                     onPositionChanged={setCurrentDatePosition}
                     onDateSelect={handleDateSelection}
-                    disabledClassName={getThemeableClassNames(
+                    disabledClassName={classNames(styles['material-disabled'], getThemeableClassNames(
                         darkMode,
-                        styles['material-disabled'],
-                        '<modifyWithDarkClasses>',
-                        disabledClassName)}
+                        styles['material-disabled_light'],
+                        styles['material-disabled_dark'],
+                        disabledClassName))}
                     currentDatePosition={currentDatePosition}
                     selectedDate={selectedDate.current}
                     range={range}

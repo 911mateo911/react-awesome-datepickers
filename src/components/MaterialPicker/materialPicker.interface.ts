@@ -14,4 +14,9 @@ export interface MaterialPickerProps extends Omit<RenderMonthProps, ToExclude> {
     initialMonthPosition?: Date
     dateRange?: RangeDates
     darkMode?: boolean
+    locale?: Locale
+    weekDaysFormat?: string
+    weekDaysLength?: number
+    selectedDateFormat?: string
+    datePositionFormat?: string
 }

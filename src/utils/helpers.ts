@@ -36,11 +36,11 @@ export const getPadEnd = (date: Date) => getSafePadding(7 - getDay(endOfMonth(da
 
 export const formatToComparableDate = (date: Date) => format(date, 'dd/MM/yyyy');
 
-export const getWeekDays = (locale: Locale, slice: number) =>
+export const getWeekDays = (locale: Locale, slice: number, formatStr?: string) =>
     eachDayOfInterval({
         start: startOfWeek(new Date(), { weekStartsOn: 1 }),
         end: endOfWeek(new Date(), { weekStartsOn: 1 })
-    }).map(date => format(date, 'EEEEEE', { locale }).slice(0, slice));
+    }).map(date => format(date, (formatStr ?? 'EEEEEE'), { locale }).slice(0, slice));
 
 export const checkIfDatesMatch = (date: Date, dateToMatch: Date | null | undefined) => dateToMatch && (
     formatToComparableDate(date) === formatToComparableDate(dateToMatch));

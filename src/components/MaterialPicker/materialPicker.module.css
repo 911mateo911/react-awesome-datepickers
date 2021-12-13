@@ -68,7 +68,7 @@
 }
 
 .notThisMonth-day_dark {
-  color: #29363d;
+  color: #314149;
 }
 
 .material-month-container-wrapper {
@@ -203,11 +203,19 @@
 }
 
 .material-disabled {
-  background-color: white !important;
-  color: #263238;
   opacity: 0.15;
   pointer-events: none !important;
   cursor: auto;
+}
+
+.material-disabled_light {
+  background-color: white !important;
+  color: #263238;
+}
+
+.material-disabled_dark {
+  background-color: #121212 !important;
+  color: #81a4b7;
 }
 
 .material-first-range-day_light {
