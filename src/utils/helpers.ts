@@ -12,7 +12,10 @@ import {
     Locale,
     isWithinInterval,
     isBefore,
-    isAfter
+    isAfter,
+    eachMonthOfInterval,
+    startOfYear,
+    endOfYear
 } from 'date-fns';
 
 export const getPrevMonth = (date: Date) => sub(date, { months: 1 });
@@ -41,6 +44,14 @@ export const getWeekDays = (locale: Locale, slice: number, formatStr?: string) =
         start: startOfWeek(new Date(), { weekStartsOn: 1 }),
         end: endOfWeek(new Date(), { weekStartsOn: 1 })
     }).map(date => format(date, (formatStr ?? 'EEEEEE'), { locale }).slice(0, slice));
+
+export const getMonthsInYear = (locale: Locale, slice: number, formatStr?: string) =>
+    eachMonthOfInterval({
+        start: startOfYear(new Date()),
+        end: endOfYear(new Date())
+    }).map(month => format(month, (formatStr ?? 'MMMMMM'), { locale }).slice(0, slice));
+
+export const getAllYears = (minYear = 1970, maxYear = 2051) => Array(maxYear - minYear).fill('').map((_, index) => index + minYear);
 
 export const checkIfDatesMatch = (date: Date, dateToMatch: Date | null | undefined) => dateToMatch && (
     formatToComparableDate(date) === formatToComparableDate(dateToMatch));
