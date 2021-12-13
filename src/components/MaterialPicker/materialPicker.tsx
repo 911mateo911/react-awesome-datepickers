@@ -10,6 +10,7 @@ import { ReactComponent as RightIcon } from './icons/rightIcon.svg';
 import { getThemeableClassNames } from '../../core';
 import { LOCALE } from '../../core/locale';
 import { MaterialYearDropdown } from './materialPicker.dropdown';
+import { ReactComponent as DropDownIcon } from './icons/dropdown.svg';
 
 export const MaterialPicker: FC<MaterialPickerProps> = ({
     dayClassName,
@@ -110,9 +111,9 @@ export const MaterialPicker: FC<MaterialPickerProps> = ({
                 [styles['material-picker-dark-container_dark']]: darkMode
             }
         )} >
-            <div className={styles['material-year']}>
+            <div onClick={handleDropDownOpen} className={styles['material-year']}>
                 {selectedDate.current ? selectedDate.current.getFullYear() : new Date().getFullYear()}
-                <p onClick={handleDropDownOpen} >rplc w. svg</p>
+                <DropDownIcon className={styles['material-dropdown']} />
                 {withYearDropDown && <MaterialYearDropdown
                     onClose={() => setDropdownOpen(false)}
                     onYearClick={date => {
@@ -123,6 +124,7 @@ export const MaterialPicker: FC<MaterialPickerProps> = ({
                     selectedDate={selectedDate.current}
                     yearClassName={dropdownYearClassName}
                     wrapperClassName={dropdownWrapperClassName}
+                    darkMode={darkMode}
                 />}
             </div>
             <p

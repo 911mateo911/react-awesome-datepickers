@@ -107,8 +107,12 @@
   margin: 0 26px 0 26px;
   padding-top: 1rem;
   font-weight: 400;
+  cursor: pointer;
   position: relative;
   letter-spacing: 0.44px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 }
 
 .material-weekDay {
@@ -217,6 +221,14 @@
 .material-disabled_dark {
   background-color: #121212 !important;
   color: #81a4b7;
+}
+
+.material-dropdown {
+  height: 10px;
+  stroke: white;
+  fill: white;
+  margin-left: 10px;
+  transform: rotate(180deg);
 }
 
 .material-first-range-day_light {

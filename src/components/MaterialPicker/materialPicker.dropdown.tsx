@@ -11,7 +11,8 @@ export const MaterialYearDropdown: FC<MaterialYearDropdownProps> = memo(({
     open,
     selectedDate,
     yearClassName,
-    wrapperClassName
+    wrapperClassName,
+    darkMode
 }) => {
     const wrapperRef = useClickOutside<HTMLSpanElement>(onClose);
 
@@ -26,7 +27,9 @@ export const MaterialYearDropdown: FC<MaterialYearDropdownProps> = memo(({
                 styles['material-dropdown-wrapper'],
                 wrapperClassName,
                 {
-                    [styles['material-dropdown-wrapper_closed']]: !open
+                    [styles['material-dropdown-wrapper_closed']]: !open,
+                    [styles['material-dropdown-wrapper_light']]: !darkMode,
+                    [styles['material-dropdown-wrapper_dark']]: darkMode
                 }
             )} >
             {getAllYears().map(year => <p
@@ -36,7 +39,10 @@ export const MaterialYearDropdown: FC<MaterialYearDropdownProps> = memo(({
                     styles['material-dropdown-year'],
                     yearClassName,
                     {
-                        [styles['material-dropdown-year_selected']]: selectedDate?.getFullYear() === year
+                        [styles['material-dropdown-year_selected__light']]: selectedDate?.getFullYear() === year && !Boolean(darkMode),
+                        [styles['material-dropdown-year_selected__dark']]: selectedDate?.getFullYear() === year && Boolean(darkMode),
+                        [styles['material-dropdown-year_light']]: !darkMode,
+                        [styles['material-dropdown-year_dark']]: darkMode
                     }
                 )}
                 onClick={() => onYearClick(new Date(

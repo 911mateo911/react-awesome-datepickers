@@ -31,4 +31,5 @@ export interface MaterialYearDropdownProps {
     selectedDate: Date | null | undefined
     wrapperClassName?: string
     yearClassName?: string
+    darkMode?: boolean
 }
