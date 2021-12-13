@@ -19,4 +19,16 @@ export interface MaterialPickerProps extends Omit<RenderMonthProps, ToExclude> {
     weekDaysLength?: number
     selectedDateFormat?: string
     datePositionFormat?: string
+    withYearDropDown?: boolean
+    dropdownWrapperClassName?: string
+    dropdownYearClassName?: string
+}
+
+export interface MaterialYearDropdownProps {
+    onYearClick: (date: Date) => void;
+    open: boolean;
+    onClose: () => void;
+    selectedDate: Date | null | undefined
+    wrapperClassName?: string
+    yearClassName?: string
 }

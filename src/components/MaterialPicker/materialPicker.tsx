@@ -9,6 +9,7 @@ import { ReactComponent as LeftIcon } from './icons/leftIcon.svg';
 import { ReactComponent as RightIcon } from './icons/rightIcon.svg';
 import { getThemeableClassNames } from '../../core';
 import { LOCALE } from '../../core/locale';
+import { MaterialYearDropdown } from './materialPicker.dropdown';
 
 export const MaterialPicker: FC<MaterialPickerProps> = ({
     dayClassName,
@@ -41,8 +42,18 @@ export const MaterialPicker: FC<MaterialPickerProps> = ({
     weekDaysFormat,
     weekDaysLength,
     selectedDateFormat,
-    datePositionFormat
+    datePositionFormat,
+    withYearDropDown = true,
+    dropdownWrapperClassName,
+    dropdownYearClassName
 }) => {
+    const [isDropdownOpen, setDropdownOpen] = useState<boolean>(false);
+    const handleDropDownOpen = () => {
+        if (!withYearDropDown) return;
+
+        setDropdownOpen(true);
+    }
+
     const [currentDateRange, setCurrentDateRange] = useState<RangeDates>({
         startDate: dateRange?.startDate,
         endDate: dateRange?.endDate
@@ -99,7 +110,21 @@ export const MaterialPicker: FC<MaterialPickerProps> = ({
                 [styles['material-picker-dark-container_dark']]: darkMode
             }
         )} >
-            <p className={styles['material-year']} >{selectedDate.current ? selectedDate.current.getFullYear() : new Date().getFullYear()}</p>
+            <div className={styles['material-year']}>
+                {selectedDate.current ? selectedDate.current.getFullYear() : new Date().getFullYear()}
+                <p onClick={handleDropDownOpen} >rplc w. svg</p>
+                {withYearDropDown && <MaterialYearDropdown
+                    onClose={() => setDropdownOpen(false)}
+                    onYearClick={date => {
+                        setCurrentDatePosition(date);
+                        setSelectedDate(date)
+                    }}
+                    open={isDropdownOpen}
+                    selectedDate={selectedDate.current}
+                    yearClassName={dropdownYearClassName}
+                    wrapperClassName={dropdownWrapperClassName}
+                />}
+            </div>
             <p
                 className={classNames(
                     styles['material-date'],

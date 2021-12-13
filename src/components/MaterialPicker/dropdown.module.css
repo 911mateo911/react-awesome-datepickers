@@ -1,0 +1,52 @@
+.material-dropdown-wrapper {
+  position: absolute;
+  top: 100%;
+  left: -0.5rem;
+  z-index: 10;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  background-color: white;
+  color: #111;
+  max-height: 350px;
+  width: calc(100% + 1rem);
+  padding: 10px 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  box-shadow: rgb(0 0 0 / 20%) 0px 5px 5px -3px,
+    rgb(0 0 0 / 14%) 0px 8px 10px 1px, rgb(0 0 0 / 12%) 0px 3px 14px 2px;
+}
+
+.material-dropdown-wrapper_closed {
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s, z-index 0.3s 0.3s;
+}
+
+.material-dropdown-year {
+  font-family: Roboto;
+  padding: 8px 2rem;
+  margin: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+  line-height: 1rem;
+  font-weight: 500;
+  z-index: 10;
+  transition: all 0.3s;
+  cursor: pointer;
+  border-radius: 999px;
+}
+
+.material-dropdown-year:hover {
+  background-color: #f0f0f0;
+}
+
+.material-dropdown-year_selected {
+  background-color: #2980b9;
+  color: white;
+}
+
+.material-dropdown-year_selected:hover {
+  background-color: #2878ad;
+}
