@@ -26,6 +26,7 @@
   "files": [
     "/dist"
   ],
+  "sideEffects": false,
   "config": {
     "commitizen": {
       "path": "cz-customizable"
