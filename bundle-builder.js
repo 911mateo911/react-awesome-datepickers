@@ -43,12 +43,7 @@ const inputOptions = {
 };
 const outputOptions = [
     {
-        file: `dist/${fileName}.cjs.js`,
-        format: 'cjs',
-        preserveModules: true,
-    },
-    {
-        file: `dist/${fileName}.esm.js`,
+        dir: `dist`,
         format: 'esm',
         preserveModules: true,
     },
