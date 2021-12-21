@@ -1,6 +1,6 @@
 {
   "name": "react-awesome-datepickers",
-  "version": "1.0.7",
+  "version": "1.0.17",
   "description": "awesome datepickers for react apps",
   "scripts": {
     "build": "rm -rf ./dist && node bundle-builder.js && npm version patch",
@@ -11,8 +11,7 @@
     "predeploy": "npm run build-storybook",
     "deploy-storybook": "gh-pages -d storybook-static"
   },
-  "main": "dist/react-awesome-datepickers.cjs.js",
-  "module": "dist/react-awesome-datepickers.esm.js",
+  "module": "dist/src/index.js",
   "types": "dist/dts/index.d.ts",
   "keywords": [
     "react",
@@ -26,6 +25,7 @@
   "files": [
     "/dist"
   ],
+  "sideEffects": true,
   "config": {
     "commitizen": {
       "path": "cz-customizable"

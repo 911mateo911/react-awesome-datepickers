@@ -8,7 +8,7 @@ import classNames from 'classnames';
 import { ReactComponent as LeftIcon } from './icons/leftIcon.svg';
 import { ReactComponent as RightIcon } from './icons/rightIcon.svg';
 import { getThemeableClassNames } from '../../core';
-import { LOCALE } from '../../core/locale';
+import { enGB } from '../../core/locale';
 import { MaterialYearDropdown } from './materialPicker.dropdown';
 import { ReactComponent as DropDownIcon } from './icons/dropdown.svg';
 
@@ -39,7 +39,7 @@ export const MaterialPicker: FC<MaterialPickerProps> = ({
     firstInRangeClassName,
     dateRange,
     darkMode = false,
-    locale = LOCALE.enGB,
+    locale = enGB,
     weekDaysFormat,
     weekDaysLength,
     selectedDateFormat,

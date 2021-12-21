@@ -27,8 +27,8 @@ const inputOptions = {
             modules: true,
         }),
         babel({
-            presets: ['@babel/preset-env', '@babel/preset-react'],
-            babelHelpers: 'bundled',
+            presets: [['@babel/preset-env', { "modules": false }], '@babel/preset-react'],
+            babelHelpers: 'runtime',
             exclude: 'node_modules/**',
         }),
         url(),
@@ -43,12 +43,9 @@ const inputOptions = {
 };
 const outputOptions = [
     {
-        file: `dist/${fileName}.cjs.js`,
-        format: 'cjs',
-    },
-    {
-        file: `dist/${fileName}.esm.js`,
+        dir: `dist`,
         format: 'esm',
+        preserveModules: true,
     },
 ];
 
