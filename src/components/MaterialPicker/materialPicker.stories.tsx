@@ -5,7 +5,7 @@ import { sub } from 'date-fns';
 import { useState } from 'react';
 import { MaterialPicker } from './materialPicker';
 import { MaterialPickerProps } from './materialPicker.interface';
-import { LOCALE } from '../../core/locale';
+import { sq } from '../../core';
 
 export default {
     title: 'MaterialPicker',
@@ -117,7 +117,7 @@ export const DarkRangePicker: Story<MaterialPickerProps> = args => {
 
 export const AlbanianPicker = Default.bind({});
 AlbanianPicker.args = {
-    locale: LOCALE.sq
+    locale: sq
 }
 
 export const WithCustomWeekDaysLength = Default.bind({});
