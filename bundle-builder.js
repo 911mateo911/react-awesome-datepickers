@@ -12,9 +12,6 @@ const { terser } = require('rollup-plugin-terser');
 
 const currentWorkingPath = process.cwd();
 
-// get repo name from package.json
-const { name: fileName } = require(path.join(currentWorkingPath, 'package.json'));
-
 const inputPath = path.join(currentWorkingPath, 'src/index.ts');
 
 const inputOptions = {
@@ -24,7 +21,7 @@ const inputOptions = {
         resolve(),
         postcss({
             // css modules
-            modules: true,
+            modules: true
         }),
         babel({
             presets: [['@babel/preset-env', { "modules": false }], '@babel/preset-react'],
