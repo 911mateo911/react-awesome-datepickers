@@ -1,4 +1,4 @@
-import React, { FC, useEffect, memo } from 'react'
+import React, { FC, useEffect, memo, SyntheticEvent } from 'react'
 import { MaterialYearDropdownProps } from './materialPicker.interface';
 import styles from './dropdown.module.css';
 import { getAllYears } from '../../utils';
@@ -19,6 +19,18 @@ export const MaterialYearDropdown: FC<MaterialYearDropdownProps> = memo(({
     useEffect(() => {
         document.querySelector(`#year_${(selectedDate?.getFullYear() || new Date().getFullYear())}`)?.scrollIntoView({ block: 'center' });
     }, [open]);
+
+    const handleYearClick = (event: SyntheticEvent, year: number) => {
+        event.stopPropagation();
+
+        onClose();
+
+        onYearClick(new Date(
+            year,
+            (selectedDate?.getMonth() ?? new Date().getMonth()),
+            (selectedDate?.getDate() ?? new Date().getDate())
+        ));
+    }
 
     return (
         <span
@@ -45,11 +57,7 @@ export const MaterialYearDropdown: FC<MaterialYearDropdownProps> = memo(({
                         [styles['material-dropdown-year_dark']]: darkMode
                     }
                 )}
-                onClick={() => onYearClick(new Date(
-                    year,
-                    (selectedDate?.getMonth() ?? new Date().getMonth()),
-                    (selectedDate?.getDate() ?? new Date().getDate())
-                ))}
+                onClick={(event) => handleYearClick(event, year)}
             >
                 {year}
             </p>)

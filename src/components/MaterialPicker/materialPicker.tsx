@@ -121,7 +121,7 @@ export const MaterialPicker: FC<MaterialPickerProps> = ({
                         setSelectedDate(date)
                     }}
                     open={isDropdownOpen}
-                    selectedDate={selectedDate.current}
+                    selectedDate={selectedDate.current || new Date()}
                     yearClassName={dropdownYearClassName}
                     wrapperClassName={dropdownWrapperClassName}
                     darkMode={darkMode}
